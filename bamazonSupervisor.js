@@ -41,7 +41,7 @@ function options() {
 };
 
 function viewSales() {
-  connection.query('SELECT department_id, departments.department_name, over_head_costs, SUM(product_sales) AS product_sales, SUM(product_sales) - over_head_costs AS total_profit FROM departments JOIN products ON departments.department_name = products.department_name  GROUP BY department_id', (err, results) => {
+  connection.query('SELECT department_id, departments.department_name, over_head_costs, SUM(product_sales) AS product_sales, SUM(product_sales) - over_head_costs AS total_profit FROM departments JOIN products ON departments.department_name = products.department_name GROUP BY department_id', (err, results) => {
     if (err) throw err;
     console.table(results);
     options();
