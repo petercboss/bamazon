@@ -8,7 +8,14 @@ CREATE TABLE products (
   product_name VARCHAR(100) NOT NULL,
   department_name VARCHAR(30),
   price DECIMAL(10,2) NOT NULL,
-  stock_quantity INT NOT NULL
+  stock_quantity INT NOT NULL,
+  product_sales INT
+);
+
+CREATE TABLE departments (
+  department_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(100) NOT NULL,
+  over_head_costs INT NOT NULL
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
@@ -40,3 +47,15 @@ VALUES ("Silver Pekoe", "White", 11.20, 50);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("White Peony", "White", 13.80, 20);
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("Oolong", 200);
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("Pu'er", 100);
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("Green", 200);
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("White", 75);

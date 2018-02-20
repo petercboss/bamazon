@@ -46,10 +46,10 @@ function buy() {
                     quit();
                 }
                 else {
-                    let newQuantity = results[0].stock_quantity - +answer.amount;
-                    connection.query(`UPDATE products SET stock_quantity = ${newQuantity}  WHERE ?`, [{ item_id : answer.item }], (err, results) => {
+                    let sales = (+answer.amount * price).toFixed(2);
+                    connection.query(`UPDATE products SET stock_quantity = stock_quantity - ?, product_sales = IFNULL(product_sales, 0) + ? WHERE ?`, [+answer.amount, sales, { item_id : answer.item }], (err, results) => {
                         if (err) throw err;
-                        console.log(`Thank You!! Your total is $${+answer.amount * price}`);
+                        console.log(`Thank You!! Your total is $${sales}`);
                         quit();
                     });
                 };
@@ -72,7 +72,7 @@ function quit() {
             buy();
         }
         else {
-            process.exit();
+            connection.end();
         };
     });
 };
